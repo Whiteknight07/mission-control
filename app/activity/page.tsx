@@ -1,6 +1,6 @@
 "use client";
 
-import { ActivityFeed } from "@/components/design-components";
+import { ActivityFeed } from "@/components/designs/glass-morphism";
 
 export default function ActivityPage() {
   return (

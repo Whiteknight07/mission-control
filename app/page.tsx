@@ -1,6 +1,6 @@
 "use client";
 
-import { ActivityFeed, DashboardStats, SearchBar, UpcomingTasksWidget } from "@/components/design-components";
+import { ActivityFeed, DashboardStats, SearchBar, UpcomingTasksWidget } from "@/components/designs/glass-morphism";
 
 export default function Home() {
   return (

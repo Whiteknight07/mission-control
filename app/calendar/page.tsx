@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarGrid } from "@/components/design-components";
+import { CalendarGrid } from "@/components/designs/glass-morphism";
 
 export default function CalendarPage() {
   return (

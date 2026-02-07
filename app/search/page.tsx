@@ -1,6 +1,6 @@
 "use client";
 
-import { SearchBar } from "@/components/design-components";
+import { SearchBar } from "@/components/designs/glass-morphism";
 
 export default function SearchPage() {
   return (
