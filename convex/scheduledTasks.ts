@@ -260,3 +260,60 @@ export const seedTasks = mutation({
     return { created: demoTasks.length, skipped: false };
   },
 });
+
+/** Upsert a task by name — used by the cron sync script */
+export const upsertByName = mutation({
+  args: {
+    name: v.string(),
+    schedule: v.string(),
+    type: v.union(v.literal("cron"), v.literal("reminder"), v.literal("recurring")),
+    enabled: v.boolean(),
+    nextFire: v.optional(v.number()),
+    lastRun: v.optional(v.number()),
+    config: v.optional(v.any()),
+  },
+  handler: async (ctx, args) => {
+    const existing = await ctx.db
+      .query("scheduledTasks")
+      .filter((q) => q.eq(q.field("name"), args.name))
+      .first();
+
+    const data = {
+      name: args.name,
+      schedule: args.schedule,
+      type: args.type,
+      enabled: args.enabled,
+      nextFire: args.nextFire ?? Date.now(),
+      lastRun: args.lastRun,
+      config: args.config ?? {},
+    };
+
+    if (existing) {
+      await ctx.db.patch(existing._id, data);
+      return { id: existing._id, action: "updated" as const };
+    } else {
+      const id = await ctx.db.insert("scheduledTasks", data);
+      return { id, action: "created" as const };
+    }
+  },
+});
+
+/** Mark a task as just-fired — called by the webhook relay */
+export const markFired = mutation({
+  args: {
+    name: v.string(),
+    status: v.optional(v.union(v.literal("success"), v.literal("error"))),
+  },
+  handler: async (ctx, args) => {
+    const task = await ctx.db
+      .query("scheduledTasks")
+      .filter((q) => q.eq(q.field("name"), args.name))
+      .first();
+
+    if (task) {
+      await ctx.db.patch(task._id, { lastRun: Date.now() });
+      return { found: true };
+    }
+    return { found: false };
+  },
+});
