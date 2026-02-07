@@ -1,5 +1,6 @@
 import path from "node:path";
 import express, { Request, Response } from "express";
+import { enrichRawToolCall, toolToActivityType as sharedToolToActivityType } from "../scripts/lib/enrich.js";
 
 const PORT = 3002;
 const CONVEX_ENDPOINT = "https://careful-gnat-191.convex.site/activity/log";
@@ -396,7 +397,7 @@ function toolToActivityType(tool: string): ActivityType {
 
 function eventToActivityType(event: RelayEvent): ActivityType {
   if (event.event === "tool_call" && event.tool) {
-    return toolToActivityType(event.tool);
+    return sharedToolToActivityType(event.tool);
   }
 
   const eventMap: Record<EventType, ActivityType> = {
@@ -611,7 +612,15 @@ function parseToolCall(payload: unknown): { ok: true; value: RawToolCall } | { o
 }
 
 async function processToolCall(toolCall: RawToolCall): Promise<ProcessOutcome> {
-  const { activity, kind, filePath } = enrichToolCall(toolCall);
+  const { activity: sharedActivity, kind, filePath } = enrichRawToolCall(toolCall);
+  const activity: ConvexActivity = {
+    ...sharedActivity,
+    metadata: (sharedActivity.metadata as EnrichedMetadata) ?? {
+      importance: sharedActivity.status === "error" ? 5 : 2,
+      tool: toolCall.tool,
+    },
+    timestamp: sharedActivity.timestamp ?? Date.now(),
+  };
   return queueOrForwardToolActivity(activity, kind, filePath);
 }
 
