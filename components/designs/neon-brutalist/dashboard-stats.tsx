@@ -18,21 +18,21 @@ export function DashboardStats() {
     <section className="grid gap-4 lg:grid-cols-3">
       <StatCard
         href="/activity"
-        icon={<Activity className="size-6" strokeWidth={3} />}
+        icon={<Activity className="size-6" />}
         label="LIVE_ACTIVITY"
         value={activities?.length}
         color="#ff00ff"
       />
       <StatCard
         href="/calendar"
-        icon={<CalendarClock className="size-6" strokeWidth={3} />}
+        icon={<CalendarClock className="size-6" />}
         label="SCHEDULED"
         value={tasks?.length}
         color="#00ffff"
       />
       <StatCard
         href="/search"
-        icon={<FileSearch className="size-6" strokeWidth={3} />}
+        icon={<FileSearch className="size-6" />}
         label="INDEXED_DOCS"
         value={documents?.length}
         color="#ffff00"

@@ -46,7 +46,7 @@ export function UpcomingTasksWidget() {
           <p className="text-[10px] font-black uppercase tracking-widest text-[#00ffff]">SCHEDULER</p>
           <h2 className="mt-1 text-xl font-black uppercase text-white">UPCOMING</h2>
         </div>
-        <CalendarClock className="size-6 text-[#00ffff]" strokeWidth={3} />
+        <CalendarClock className="size-6 text-[#00ffff]" />
       </div>
 
       <div className="mt-4 space-y-2">

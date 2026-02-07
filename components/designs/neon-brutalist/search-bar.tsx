@@ -349,7 +349,7 @@ export function SearchBar({ widget = false, className }: SearchBarProps) {
             {history.length > 0 && (
               <section className="border-4 border-[#00ffff] bg-black p-4">
                 <div className="mb-3 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#00ffff]">
-                  <History className="size-3" strokeWidth={3} />
+                  <History className="size-3" />
                   HISTORY
                 </div>
                 <div className="flex flex-wrap gap-2">
@@ -377,7 +377,7 @@ export function SearchBar({ widget = false, className }: SearchBarProps) {
 
             <section className="border-4 border-[#ff00ff] bg-black p-4">
               <div className="mb-3 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-[#ff00ff]">
-                <Radar className="size-3" strokeWidth={3} />
+                <Radar className="size-3" />
                 RECENT_ACTIVITY
               </div>
               <div className="space-y-2">
@@ -599,7 +599,7 @@ function ResultSection({ group, title, icon: Icon, count, collapsed, onToggle, c
         style={{ borderColor: `${color}50` }}
       >
         <span className="flex items-center gap-2">
-          <Icon className="size-4" style={{ color }} strokeWidth={3} />
+          <Icon className="size-4" style={{ color }} />
           <span className="text-xs font-black uppercase tracking-widest" style={{ color }}>{title}</span>
         </span>
         <span className="flex items-center gap-2">

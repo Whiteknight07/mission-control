@@ -41,7 +41,7 @@ export function Nav() {
                     : "text-neutral-400 hover:bg-neutral-900 hover:text-white"
                 )}
               >
-                <Icon className="size-4" strokeWidth={1.5} />
+                <Icon className="size-4" />
                 <span className="font-light">{item.label}</span>
               </Link>
             );
@@ -71,7 +71,7 @@ export function Nav() {
                 isActive ? "bg-white text-black" : "text-neutral-500"
               )}
             >
-              <Icon className="size-4" strokeWidth={1.5} />
+              <Icon className="size-4" />
               {item.label.split(" ")[0]}
             </Link>
           );

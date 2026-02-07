@@ -149,7 +149,7 @@ export function ActivityFeed({ limit, showFilters = true, compact = false }: Act
 
       {groupedActivities.length === 0 ? (
         <div className="border-4 border-dashed border-[#ff00ff]/50 bg-black p-8 text-center">
-          <Bot className="mx-auto size-12 text-[#ff00ff]" strokeWidth={3} />
+          <Bot className="mx-auto size-12 text-[#ff00ff]" />
           <p className="mt-4 text-sm font-black uppercase tracking-widest text-[#ff00ff]">NO_DATA</p>
           <p className="mt-2 text-xs text-[#ff00ff]/70">Waiting for agent telemetry...</p>
         </div>
@@ -177,7 +177,7 @@ export function ActivityFeed({ limit, showFilters = true, compact = false }: Act
           onClick={() => setVisibleLimit((c) => c + PAGE_SIZE)}
           className="flex w-full items-center justify-center gap-2 border-4 border-[#00ffff] bg-black py-3 text-xs font-black uppercase tracking-widest text-[#00ffff] transition-colors hover:bg-[#00ffff] hover:text-black"
         >
-          <ChevronDown className="size-4" strokeWidth={3} />
+          <ChevronDown className="size-4" />
           LOAD_MORE
         </button>
       )}
@@ -202,7 +202,7 @@ function ActivityCard({ activity, now, compact }: { activity: ActivityItem; now:
             className="flex size-10 shrink-0 items-center justify-center"
             style={{ backgroundColor: type.color }}
           >
-            <Icon className="size-5 text-black" strokeWidth={3} />
+            <Icon className="size-5 text-black" />
           </div>
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
@@ -228,7 +228,7 @@ function ActivityCard({ activity, now, compact }: { activity: ActivityItem; now:
           className="flex shrink-0 items-center gap-1 px-1.5 py-0.5 text-[9px] font-black text-black"
           style={{ backgroundColor: status.color }}
         >
-          <StatusIcon className="size-3" strokeWidth={3} />
+          <StatusIcon className="size-3" />
           {activity.status.toUpperCase()}
         </div>
       </div>

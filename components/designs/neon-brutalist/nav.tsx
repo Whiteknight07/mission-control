@@ -21,7 +21,7 @@ export function Nav() {
       {/* Desktop - Vertical strip on left edge */}
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-20 flex-col bg-black border-r-4 border-[#ff00ff] md:flex">
         <div className="flex h-20 items-center justify-center border-b-4 border-[#ff00ff] bg-[#ff00ff]">
-          <Zap className="size-8 text-black" strokeWidth={3} />
+          <Zap className="size-8 text-black" />
         </div>
 
         <nav className="flex flex-1 flex-col items-center gap-1 py-4">
@@ -40,7 +40,7 @@ export function Nav() {
                     : "text-[#ff00ff] hover:bg-[#ff00ff]/20"
                 )}
               >
-                <Icon className="size-6" strokeWidth={isActive ? 3 : 2} />
+                <Icon className="size-6" />
                 <span className="absolute left-full ml-3 hidden whitespace-nowrap bg-[#ff00ff] px-3 py-1.5 text-xs font-black uppercase tracking-widest text-black group-hover:block">
                   {item.label}
                 </span>
@@ -70,7 +70,7 @@ export function Nav() {
                 isActive ? "bg-[#ff00ff] text-black" : "text-[#ff00ff]"
               )}
             >
-              <Icon className="size-5" strokeWidth={isActive ? 3 : 2} />
+              <Icon className="size-5" />
               {item.label.split(" ")[0]}
             </Link>
           );

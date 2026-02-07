@@ -147,7 +147,7 @@ export function ActivityFeed({ limit, showFilters = true, compact = false }: Act
 
       {groupedActivities.length === 0 ? (
         <div className="py-16 text-center">
-          <Bot className="mx-auto size-8 text-neutral-700" strokeWidth={1.5} />
+          <Bot className="mx-auto size-8 text-neutral-700" />
           <p className="mt-4 text-sm text-neutral-500">No activity</p>
         </div>
       ) : (
@@ -188,7 +188,7 @@ function ActivityCard({ activity, now, compact }: { activity: ActivityItem; now:
     <li className="group py-3 transition-colors hover:bg-neutral-900/50">
       <div className="flex items-start justify-between gap-4">
         <div className="flex min-w-0 gap-3">
-          <Icon className="mt-0.5 size-4 shrink-0 text-neutral-600" strokeWidth={1.5} />
+          <Icon className="mt-0.5 size-4 shrink-0 text-neutral-600" />
           <div className="min-w-0">
             <p className={cn("text-white", compact ? "text-sm" : "text-base")}>{activity.title}</p>
             {activity.description && !compact && (
@@ -207,7 +207,7 @@ function ActivityCard({ activity, now, compact }: { activity: ActivityItem; now:
           activity.status === "error" && "text-white",
           activity.status === "pending" && "text-neutral-500"
         )}>
-          <StatusIcon className="size-3" strokeWidth={1.5} />
+          <StatusIcon className="size-3" />
           {activity.status}
         </div>
       </div>

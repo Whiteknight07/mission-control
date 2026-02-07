@@ -150,9 +150,9 @@ export function CalendarGrid() {
                 onClick={btn.onClick}
                 className="flex items-center gap-1 border-2 border-[#00ffff] px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-[#00ffff] transition-colors hover:bg-[#00ffff] hover:text-black"
               >
-                {btn.icon === ChevronLeft && <ChevronLeft className="size-3" strokeWidth={3} />}
+                {btn.icon === ChevronLeft && <ChevronLeft className="size-3" />}
                 {btn.label}
-                {btn.icon === ChevronRight && <ChevronRight className="size-3" strokeWidth={3} />}
+                {btn.icon === ChevronRight && <ChevronRight className="size-3" />}
               </button>
             ))}
             <button
@@ -163,7 +163,7 @@ export function CalendarGrid() {
               {seedState === "pending" ? (
                 <Loader2 className="size-3 animate-spin" />
               ) : (
-                <DatabaseZap className="size-3" strokeWidth={3} />
+                <DatabaseZap className="size-3" />
               )}
               SEED_TASKS
             </button>
