@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { Activity, CalendarClock, FileSearch } from "lucide-react";
 import { useQuery } from "convex/react";
 
@@ -9,8 +10,10 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
 export function DashboardStats() {
+  const [fromMs] = useState(() => Date.now());
+
   const activities = useQuery(api.activities.list, { limit: 200 });
-  const tasks = useQuery(api.scheduledTasks.listUpcoming, { enabledOnly: true, limit: 200 });
+  const tasks = useQuery(api.scheduledTasks.listUpcoming, { enabledOnly: true, limit: 200, fromMs });
   const documents = useQuery(api.documents.list, { limit: 200 });
 
   const activityCount = activities?.length;
