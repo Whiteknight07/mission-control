@@ -69,6 +69,23 @@ export const search = query({
   },
 });
 
+export const listByTimestampRange = query({
+  args: {
+    start: v.number(),
+    end: v.number(),
+    limit: v.optional(v.number()),
+  },
+  handler: async (ctx, args) => {
+    const limit = Math.max(1, Math.min(args.limit ?? 5000, 10000));
+
+    return await ctx.db
+      .query("activities")
+      .withIndex("by_timestamp", (q) => q.gte("timestamp", args.start).lte("timestamp", args.end))
+      .order("asc")
+      .take(limit);
+  },
+});
+
 export const create = mutation({
   args: {
     timestamp: v.optional(v.number()),
