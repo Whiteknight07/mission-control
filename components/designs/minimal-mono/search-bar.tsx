@@ -2,7 +2,7 @@
 
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type ReactNode, type RefObject } from "react";
 import type { LucideIcon } from "lucide-react";
-import { Bell, BookOpen, ChevronDown, ChevronRight, Clock3, Code2, Cpu, Database, File, FileSearch, FileText, Globe, History, Loader2, Mail, MessageSquare, Radar, Repeat2, Search, Settings2 } from "lucide-react";
+import { Bell, BookOpen, ChevronDown, ChevronRight, Clock3, Code2, Cpu, Database, File, FileSearch, FileText, Globe, Loader2, Mail, MessageSquare, Radar, Repeat2, Search, Settings2 } from "lucide-react";
 import { useAction, useQuery } from "convex/react";
 
 import { api } from "@/convex/_generated/api";

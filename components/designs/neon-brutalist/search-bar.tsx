@@ -19,7 +19,6 @@ import {
   ChevronRight,
   Clock3,
   Code2,
-  Command,
   Cpu,
   Database,
   File,
@@ -369,9 +368,9 @@ export function SearchBar({ widget = false, className }: SearchBarProps) {
             <section className="border-4 border-[#ffff00] bg-black p-4">
               <h3 className="text-[10px] font-black uppercase tracking-widest text-[#ffff00]">TIPS</h3>
               <ul className="mt-2 space-y-1 text-[11px] text-white/60">
-                <li>// Use exact activity names for precision</li>
-                <li>// Search schedules like &quot;*/15&quot; or &quot;daily&quot;</li>
-                <li>// Use path fragments for documents</li>
+                <li>Use exact activity names for precision</li>
+                <li>Search schedules like &quot;*/15&quot; or &quot;daily&quot;</li>
+                <li>Use path fragments for documents</li>
               </ul>
             </section>
 
@@ -385,7 +384,7 @@ export function SearchBar({ widget = false, className }: SearchBarProps) {
                   <article key={activity._id} className="border-l-2 border-[#ff00ff]/50 bg-white/5 px-3 py-2">
                     <p className="text-xs font-bold text-white">{activity.title}</p>
                     <p className="mt-1 text-[10px] text-white/50">
-                      {activity.type.toUpperCase()} // {formatTimestamp(activity.timestamp)}
+                      {activity.type.toUpperCase()} · {formatTimestamp(activity.timestamp)}
                     </p>
                   </article>
                 ))}

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CalendarDays, Home, Radar, Search, Terminal } from "lucide-react";
+import { CalendarDays, Home, Radar, Search } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -33,7 +33,7 @@ export function Nav() {
         {/* Terminal content */}
         <div className="flex-1 p-3 text-xs">
           <div className="mb-3 text-[#33ff33]/70">
-            <p>Last login: {new Date().toLocaleDateString()}</p>
+            <p suppressHydrationWarning>Last login: {new Date().toLocaleDateString()}</p>
             <p className="mt-1">Welcome to Mission Control v1.0.0</p>
           </div>
 

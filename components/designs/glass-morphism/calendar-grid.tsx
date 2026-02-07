@@ -4,13 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import type { Doc } from "@/convex/_generated/dataModel";
 import { useMutation, useQuery } from "convex/react";
 import {
-  CalendarClock,
   ChevronLeft,
   ChevronRight,
-  Clock3,
   DatabaseZap,
   Loader2,
-  Timer,
   X,
 } from "lucide-react";
 

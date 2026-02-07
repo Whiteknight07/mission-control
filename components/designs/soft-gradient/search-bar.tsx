@@ -343,7 +343,7 @@ export function SearchBar({ widget = false, className }: SearchBarProps) {
               <h3 className="text-xs font-medium text-violet-400">Tips</h3>
               <ul className="mt-2 space-y-1 text-xs text-violet-300/70">
                 <li>Search by activity name or type</li>
-                <li>Use cron patterns like "*/15"</li>
+                <li>Use cron patterns like */15</li>
                 <li>Search document paths</li>
               </ul>
             </section>

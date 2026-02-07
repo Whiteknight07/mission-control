@@ -9,7 +9,6 @@ import {
   CheckCircle2,
   ChevronDown,
   CircleEllipsis,
-  Clock3,
   Code2,
   FileText,
   Globe,

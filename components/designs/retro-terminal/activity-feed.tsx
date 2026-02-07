@@ -1,6 +1,6 @@
 "use client";
 
-import { type ComponentType, useEffect, useMemo, useState } from "react";
+import { type ComponentType, useMemo, useState } from "react";
 import {
   AlertTriangle,
   AtSign,
@@ -9,7 +9,6 @@ import {
   CheckCircle2,
   ChevronDown,
   CircleEllipsis,
-  Clock3,
   Code2,
   FileText,
   Globe,
@@ -77,12 +76,6 @@ export function ActivityFeed({ limit, showFilters = true, compact = false }: Act
   const baseLimit = limit ?? (compact ? COMPACT_PAGE_SIZE : PAGE_SIZE);
   const [activeType, setActiveType] = useState<"all" | ActivityType>("all");
   const [visibleLimit, setVisibleLimit] = useState(baseLimit);
-  const [timeNow, setTimeNow] = useState(() => Date.now());
-
-  useEffect(() => {
-    const timer = window.setInterval(() => setTimeNow(Date.now()), 60_000);
-    return () => window.clearInterval(timer);
-  }, []);
 
   const queryArgs = useMemo(
     () => (activeType === "all" ? { limit: visibleLimit } : { limit: visibleLimit, type: activeType }),
@@ -161,8 +154,8 @@ export function ActivityFeed({ limit, showFilters = true, compact = false }: Act
               </div>
 
               <ul className="space-y-1">
-                {group.items.map((item, idx) => (
-                  <ActivityCard key={item._id} activity={item} now={timeNow} compact={compact} index={idx} />
+                {group.items.map((item) => (
+                  <ActivityCard key={item._id} activity={item} compact={compact} />
                 ))}
               </ul>
             </div>
@@ -186,7 +179,7 @@ export function ActivityFeed({ limit, showFilters = true, compact = false }: Act
   );
 }
 
-function ActivityCard({ activity, now, compact, index }: { activity: ActivityItem; now: number; compact: boolean; index: number }) {
+function ActivityCard({ activity, compact }: { activity: ActivityItem; compact: boolean }) {
   const type = typeConfig[activity.type];
   const status = statusConfig[activity.status];
   const time = new Date(activity.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
@@ -247,14 +240,4 @@ function formatDayLabel(date: Date): string {
   if (diffDays === 0) return "today";
   if (diffDays === 1) return "yesterday";
   return date.toISOString().split("T")[0];
-}
-
-function formatRelativeTime(timestamp: number, now: number): string {
-  const diffMs = timestamp - now;
-  const absMs = Math.abs(diffMs);
-  const rtf = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
-  if (absMs < 60_000) return rtf.format(Math.round(diffMs / 1000), "second");
-  if (absMs < 3_600_000) return rtf.format(Math.round(diffMs / 60_000), "minute");
-  if (absMs < 86_400_000) return rtf.format(Math.round(diffMs / 3_600_000), "hour");
-  return rtf.format(Math.round(diffMs / 86_400_000), "day");
 }

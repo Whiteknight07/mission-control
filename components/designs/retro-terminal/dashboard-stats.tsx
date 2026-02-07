@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Activity, CalendarClock, FileSearch } from "lucide-react";
 import { useQuery } from "convex/react";
 
 import { api } from "@/convex/_generated/api";
@@ -47,7 +46,7 @@ type StatCardProps = {
 
 function StatCard({ href, cmd, label, value }: StatCardProps) {
   return (
-    <article className="rounded border border-[#33ff33]/30 bg-black p-4 transition-all hover:border-[#33ff33]/60 hover:bg-[#33ff33]/5">
+    <article className="relative overflow-hidden rounded border border-[#33ff33]/30 bg-black p-4 transition-all hover:border-[#33ff33]/60 hover:bg-[#33ff33]/5">
       <p className="text-[10px] text-[#33ff33]/50">{cmd}</p>
 
       <div className="mt-3 flex items-baseline gap-2">

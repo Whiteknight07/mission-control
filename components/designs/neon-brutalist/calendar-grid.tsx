@@ -4,10 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import type { Doc } from "@/convex/_generated/dataModel";
 import { useMutation, useQuery } from "convex/react";
 import {
-  CalendarClock,
   ChevronLeft,
   ChevronRight,
-  Clock3,
   DatabaseZap,
   Loader2,
   Timer,
@@ -18,7 +16,6 @@ import { api } from "@/convex/_generated/api";
 import { cn } from "@/lib/utils";
 
 type ScheduledTask = Doc<"scheduledTasks">;
-type NavDirection = "idle" | "forward" | "back";
 type SeedState = "idle" | "pending" | "created" | "skipped" | "error";
 
 const HOURS = Array.from({ length: 24 }, (_, hour) => hour);
@@ -33,7 +30,6 @@ const typeTone: Record<string, { bg: string; border: string }> = {
 
 export function CalendarGrid() {
   const [weekStart, setWeekStart] = useState(() => startOfWeek(new Date()));
-  const [navDirection, setNavDirection] = useState<NavDirection>("idle");
   const [mobileOffset, setMobileOffset] = useState(() => getMobileOffsetForDate(new Date()));
   const [selectedTaskId, setSelectedTaskId] = useState<ScheduledTask["_id"] | null>(null);
   const [nowMs, setNowMs] = useState(() => Date.now());
@@ -98,20 +94,17 @@ export function CalendarGrid() {
   const mobileDays = weekDays.slice(mobileOffset, mobileOffset + 3);
 
   const handlePrevWeek = () => {
-    setNavDirection("back");
     setWeekStart((c) => addDays(c, -7));
     setMobileOffset(0);
   };
 
   const handleNextWeek = () => {
-    setNavDirection("forward");
     setWeekStart((c) => addDays(c, 7));
     setMobileOffset(0);
   };
 
   const handleToday = () => {
     const today = new Date();
-    setNavDirection("idle");
     setWeekStart(startOfWeek(today));
     setMobileOffset(getMobileOffsetForDate(today));
   };
