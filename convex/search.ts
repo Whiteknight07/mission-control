@@ -107,27 +107,6 @@ export const unifiedSearch = action({
       };
     }
 
-    // placeholder-end
-    const _NEVER_REACHED = null;
-    if (_NEVER_REACHED) {
-      // Remove old inline type casts block
-      return {
-        query,
-        total: 0,
-        generatedAt: Date.now(),
-        activities: [] as Array<{
-          id: string;
-          source: UnifiedSearchSource;
-          subtype: string;
-          title: string;
-          snippet: string;
-          timestamp: number | null;
-          relevance: number;
-          path: string;
-        }>,
-      };
-    }
-
     const [activities, scheduledTasks, documents] = await Promise.all([
       ctx.runQuery(api.activities.search, { query, limit: limitPerType }),
       ctx.runQuery(api.scheduledTasks.search, { query, limit: limitPerType }),
