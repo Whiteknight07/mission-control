@@ -1,9 +1,8 @@
-import type { ConvexActivity } from "../scripts/lib/enrich.js";
-
 const RELAY_URL = "http://127.0.0.1:3002/events";
 const CONVEX_ENDPOINT = "https://careful-gnat-191.convex.site/activity/log";
 
 type EventType = "tool_call" | "cron_fire" | "message_sent" | "file_changed" | "error";
+type ActivityType = "email" | "code" | "cron" | "search" | "message" | "file" | "browser" | "system";
 
 interface RelayEvent {
   event: EventType;
@@ -12,6 +11,15 @@ interface RelayEvent {
   description?: string;
   status?: "success" | "error" | "pending";
   metadata?: Record<string, unknown>;
+}
+
+interface ConvexActivity {
+  type: ActivityType;
+  title: string;
+  description?: string;
+  status: "success" | "error" | "pending";
+  metadata?: Record<string, unknown>;
+  timestamp?: number;
 }
 
 /**
