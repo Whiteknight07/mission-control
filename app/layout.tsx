@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Chakra_Petch, IBM_Plex_Mono } from "next/font/google";
 
 import "./globals.css";
-import { Nav } from "@/components/nav";
+import { Nav } from "@/components/design-components";
+import { DesignProvider } from "@/components/design-provider";
+import { DesignSwitcher } from "@/components/design-switcher";
 import { ConvexClientProvider } from "./convex-client-provider";
 
 const display = Chakra_Petch({
@@ -34,12 +36,15 @@ export default function RootLayout({
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${display.variable} ${mono.variable} min-h-screen antialiased`}>
         <ConvexClientProvider>
-          <div className="hud-grid relative min-h-screen pb-20 md:pb-0">
-            <Nav />
-            <main className="mx-auto w-full max-w-[1600px] px-4 pt-4 md:pl-[18.5rem] md:pr-6 md:pt-6">
-              {children}
-            </main>
-          </div>
+          <DesignProvider>
+            <div className="relative min-h-screen pb-32 pt-14 md:pb-20 md:pt-14">
+              <DesignSwitcher />
+              <Nav />
+              <main className="mx-auto w-full max-w-[1600px] px-4 pt-4 md:pl-[18rem] md:pr-6 md:pt-6">
+                {children}
+              </main>
+            </div>
+          </DesignProvider>
         </ConvexClientProvider>
       </body>
     </html>
