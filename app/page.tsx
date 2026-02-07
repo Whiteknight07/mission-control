@@ -1,5 +1,6 @@
 import { ActivityFeed } from "@/components/activity-feed";
 import { DashboardStats } from "@/components/dashboard-stats";
+import { UpcomingTasksWidget } from "@/components/upcoming-tasks-widget";
 
 export default function Home() {
   return (
@@ -16,12 +17,12 @@ export default function Home() {
 
       <DashboardStats />
 
-      <section className="space-y-3">
-        <div className="flex items-center justify-between gap-3">
+      <section className="grid gap-4 xl:grid-cols-[1.65fr_1fr]">
+        <div className="space-y-3">
           <h2 className="font-display text-lg uppercase tracking-[0.16em] text-primary">Recent Activity Snapshot</h2>
-          <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Latest 5 Events</p>
+          <ActivityFeed limit={5} compact showFilters={false} />
         </div>
-        <ActivityFeed limit={5} compact showFilters={false} />
+        <UpcomingTasksWidget />
       </section>
     </div>
   );
