@@ -94,6 +94,40 @@ export const upsert = mutation({
   },
 });
 
+export const indexDocument = mutation({
+  args: {
+    path: v.string(),
+    name: v.string(),
+    content: v.string(),
+    lastIndexed: v.optional(v.number()),
+    type: documentTypeValidator,
+  },
+  handler: async (ctx, args) => {
+    const existing = await ctx.db
+      .query("documents")
+      .withIndex("by_path", (q) => q.eq("path", args.path))
+      .unique();
+
+    if (existing) {
+      await ctx.db.patch(existing._id, {
+        name: args.name,
+        content: args.content,
+        lastIndexed: args.lastIndexed ?? Date.now(),
+        type: args.type,
+      });
+      return existing._id;
+    }
+
+    return await ctx.db.insert("documents", {
+      path: args.path,
+      name: args.name,
+      content: args.content,
+      lastIndexed: args.lastIndexed ?? Date.now(),
+      type: args.type,
+    });
+  },
+});
+
 export const removeByPath = mutation({
   args: { path: v.string() },
   handler: async (ctx, args) => {

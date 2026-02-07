@@ -1,5 +1,6 @@
 import { ActivityFeed } from "@/components/activity-feed";
 import { DashboardStats } from "@/components/dashboard-stats";
+import { SearchBar } from "@/components/search-bar";
 import { UpcomingTasksWidget } from "@/components/upcoming-tasks-widget";
 
 export default function Home() {
@@ -16,6 +17,11 @@ export default function Home() {
       </section>
 
       <DashboardStats />
+
+      <section className="space-y-3">
+        <h2 className="font-display text-lg uppercase tracking-[0.16em] text-primary">Search Console</h2>
+        <SearchBar widget />
+      </section>
 
       <section className="grid gap-4 xl:grid-cols-[1.65fr_1fr]">
         <div className="space-y-3">
