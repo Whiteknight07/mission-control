@@ -5,6 +5,7 @@ import { CircleDashed, Clock3, Filter, Loader2 } from "lucide-react";
 import { useQuery } from "convex/react";
 
 import { api } from "@/convex/_generated/api";
+import type { Doc } from "@/convex/_generated/dataModel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -29,7 +30,7 @@ export function ActivityFeed({ limit = 30, showFilters = true }: ActivityFeedPro
 
     const formatter = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", year: "numeric" });
 
-    const buckets = new Map<string, typeof activities>();
+    const buckets = new Map<string, Doc<"activities">[]>();
 
     for (const item of activities) {
       const key = formatter.format(new Date(item.timestamp));

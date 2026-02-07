@@ -5,6 +5,7 @@ import { CalendarClock, Loader2 } from "lucide-react";
 import { useQuery } from "convex/react";
 
 import { api } from "@/convex/_generated/api";
+import type { Doc } from "@/convex/_generated/dataModel";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -31,7 +32,7 @@ export function CalendarGrid() {
   }, []);
 
   const grouped = useMemo(() => {
-    const map = new Map<string, NonNullable<typeof tasks>>();
+    const map = new Map<string, Doc<"scheduledTasks">[]>();
 
     for (const day of week) {
       map.set(day.toDateString(), []);
