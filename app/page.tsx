@@ -17,8 +17,11 @@ export default function Home() {
       <DashboardStats />
 
       <section className="space-y-3">
-        <h2 className="font-display text-lg uppercase tracking-[0.16em] text-primary">Recent Activity Snapshot</h2>
-        <ActivityFeed limit={8} showFilters={false} />
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="font-display text-lg uppercase tracking-[0.16em] text-primary">Recent Activity Snapshot</h2>
+          <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Latest 5 Events</p>
+        </div>
+        <ActivityFeed limit={5} compact showFilters={false} />
       </section>
     </div>
   );
